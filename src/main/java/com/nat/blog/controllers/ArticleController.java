@@ -1,6 +1,6 @@
 package com.nat.blog.controllers;
 
-import com.nat.blog.entities.Article;
+import com.nat.blog.dto.ArticleDTO;
 import com.nat.blog.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +15,51 @@ public class ArticleController {
     @Autowired
     ArticleService articleService;
 
+    /**
+     * Méthode pour afficher la liste des articles
+     * @return la liste de tous les articles
+     */
     @GetMapping(value = "/{id}")
-    public List<Article> getAlArticles(){
+    public List<ArticleDTO> getAllArticles(){
         return articleService.getAllArticles();
     }
 
-    public Article getArticleById(@PathVariable("id") Long id){
+    /**
+     * Retourne un article grâce à son id
+     * @param id prend un id en paramètre
+     * @return un article
+     */
+    @GetMapping
+    public ArticleDTO getArticleById(@PathVariable("id") Long id){
         return articleService.getArticleById(id);
+    }
+
+    /**
+     * Méthode pour créer un article
+     * @param articleDTO
+     * @return l'article créer et l'affiche
+     */
+    @PostMapping
+    public ArticleDTO createArticle(@RequestBody ArticleDTO articleDTO){
+        return articleService.saveArticle(articleDTO);
+    }
+
+    /**
+     * Méthode pour modifier un article
+     * @param articleDTO
+     * @return l'article et l'affiche
+     */
+    @PutMapping
+    public ArticleDTO updateArticle(@RequestBody ArticleDTO articleDTO){
+        return articleService.updateArticle(articleDTO);
+    }
+
+    /**
+     * Méthode pour supprimer un article
+     * @param id
+     */
+    @DeleteMapping(value = "/id")
+    public void deleteArticleById(@PathVariable("id") Long id){
+        articleService.deleteArticleById(id);
     }
 }

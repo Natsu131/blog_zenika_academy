@@ -74,9 +74,6 @@ public class User {
     public void setMail(String mail) {
         this.mail = mail;
     }
-    public List<Article> getArticles() {
-        return articles;
-    }
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;

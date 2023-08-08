@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service
 public class ArticleServiceImpl implements ArticleService
@@ -17,23 +19,25 @@ public class ArticleServiceImpl implements ArticleService
 
 
     @Override
-    public List<Article> getAllArticles() {
-        return articleRepository.findAll();
+    public List<ArticleDTO> getAllArticles() {
+
+        return articleRepository.findAll().stream()
+                .map(this::convertEntityToDTO)
+                .collect(Collectors.toList());
+    }
+    @Override
+    public ArticleDTO saveArticle(ArticleDTO articleDTO) {
+        return convertEntityToDTO(articleRepository.save(convertDtoToEntity(articleDTO)));
     }
 
     @Override
-    public Article saveArticle(Article article) {
-        return articleRepository.save(article);
+    public ArticleDTO getArticleById(Long id) {
+        return convertEntityToDTO(articleRepository.findById(id).get());
     }
 
     @Override
-    public Article getArticleById(Long id) {
-        return articleRepository.findById(id).get();
-    }
-
-    @Override
-    public Article updateArticle(Article article, Long id) {
-        return articleRepository.save(article);
+    public ArticleDTO updateArticle(ArticleDTO articleDTO) {
+        return convertEntityToDTO(articleRepository.save(convertDtoToEntity(articleDTO)));
     }
 
     @Override
@@ -63,7 +67,7 @@ public class ArticleServiceImpl implements ArticleService
     }
 
     @Override
-    public Article convertDtoToEntoty(ArticleDTO articleDTO) {
+    public Article convertDtoToEntity(ArticleDTO articleDTO) {
 
         Article article = new Article();
         article.setId(articleDTO.getId());

@@ -18,15 +18,15 @@ public interface ArticleService {
      *
      * @return une liste des articles
      */
-    List<Article> getAllArticles();
+    List<ArticleDTO> getAllArticles();
 
     /**
      * Crée un article
      *
-     * @param article article à sauvegarder
+     * @param articleDTO article à sauvegarder
      * @return l'article sauvegardé
      */
-    Article saveArticle(Article article);
+    ArticleDTO saveArticle(ArticleDTO articleDTO);
 
     /**
      * Recupère un article par son id
@@ -34,16 +34,15 @@ public interface ArticleService {
      * @param id id de l'article à recupérer
      * @return l'article
      */
-    Article getArticleById(Long id);
+    ArticleDTO getArticleById(Long id);
 
     /**
      * Modifie un article
      *
-     * @param article article à modifier
-     * @param id id de l'article à modifier
+     * @param articleDTO article à modifier
      * @return l'article modifié
      */
-    Article updateArticle(Article article, Long id);
+    ArticleDTO updateArticle(ArticleDTO articleDTO);
 
 
     void deleteArticle(Article article);
@@ -51,5 +50,5 @@ public interface ArticleService {
 
 
     ArticleDTO convertEntityToDTO(Article article);
-    Article convertDtoToEntoty(ArticleDTO articleDTO);
+    Article convertDtoToEntity(ArticleDTO articleDTO);
 }
