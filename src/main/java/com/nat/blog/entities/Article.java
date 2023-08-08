@@ -1,9 +1,7 @@
 package com.nat.blog.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 
 
 /**
@@ -34,6 +32,10 @@ public class Article {
      */
     private String summary;
 
+
+    private Long authorId;
+
+
     /**
      * Constructeur vide requis par Spring
      */
@@ -48,11 +50,12 @@ public class Article {
      * @param content
      * @param summary
      */
-    public Article(Long id, String title, String content, String summary) {
+    public Article(Long id, String title, String content, String summary, Long userId) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.summary = summary;
+        this.authorId = userId;
     }
 
     public Long getId() {
@@ -87,6 +90,14 @@ public class Article {
         this.summary = summary;
     }
 
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
     /**
      * Méthode qui permet d'afficher un article
      * @return une représentation textuelle d'un article
@@ -98,6 +109,7 @@ public class Article {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", summary='" + summary + '\'' +
+                ", authorId=" + authorId +
                 '}';
     }
 }

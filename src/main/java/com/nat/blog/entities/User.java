@@ -1,13 +1,21 @@
 package com.nat.blog.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
+
 /**
  * Classe qui représente un utilisateur
  */
+@Entity
 public class User {
 
     /**
      * Identifiant d'un utilisateur
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
@@ -21,7 +29,14 @@ public class User {
     private String mail;
 
     /**
-     * Constructeur vide reqyis par Spring
+     * Relation OneToMany entre utilisateurs et articles
+     */
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Article>articles;
+
+    /**
+     * Constructeur vide requis par Spring
      */
     public User() {
     }
@@ -59,6 +74,13 @@ public class User {
     public void setMail(String mail) {
         this.mail = mail;
     }
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
 
     @Override
     public String toString() {
@@ -66,6 +88,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", mail='" + mail + '\'' +
+                ", articles=" + articles +
                 '}';
     }
 }

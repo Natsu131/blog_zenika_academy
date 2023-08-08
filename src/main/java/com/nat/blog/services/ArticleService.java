@@ -1,5 +1,6 @@
 package com.nat.blog.services;
 
+import com.nat.blog.dto.ArticleDTO;
 import com.nat.blog.entities.Article;
 import org.springframework.stereotype.Service;
 
@@ -44,10 +45,11 @@ public interface ArticleService {
      */
     Article updateArticle(Article article, Long id);
 
-    /**
-     * Supprimer un article
-     *
-     * @param id id de l'article à supprimer
-     */
-    void deleteArticle(Long id);
+
+    void deleteArticle(Article article);
+    void deleteArticleById(Long id);
+
+
+    ArticleDTO convertEntityToDTO(Article article);
+    Article convertDtoToEntoty(ArticleDTO articleDTO);
 }
