@@ -29,13 +29,6 @@ public class User {
     private String mail;
 
     /**
-     * Relation OneToMany entre utilisateurs et articles
-     */
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    private List<Article>articles;
-
-    /**
      * Constructeur vide requis par Spring
      */
     public User() {
@@ -75,9 +68,6 @@ public class User {
         this.mail = mail;
     }
 
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
-    }
 
     @Override
     public String toString() {
@@ -85,7 +75,6 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", mail='" + mail + '\'' +
-                ", articles=" + articles +
                 '}';
     }
 }

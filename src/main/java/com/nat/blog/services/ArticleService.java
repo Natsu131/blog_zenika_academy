@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Interface implémentant le CRUD basique pour les articles
  */
-@Service
+
 public interface ArticleService {
 
     /**

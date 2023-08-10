@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-@CrossOrigin
+@RequestMapping("/articles")
+@CrossOrigin(origins = "*")
 public class ArticleController {
 
     @Autowired
@@ -19,7 +19,7 @@ public class ArticleController {
      * Méthode pour afficher la liste des articles
      * @return la liste de tous les articles
      */
-    @GetMapping(value = "/{id}")
+    @GetMapping
     public List<ArticleDTO> getAllArticles(){
         return articleService.getAllArticles();
     }
@@ -29,7 +29,7 @@ public class ArticleController {
      * @param id prend un id en paramètre
      * @return un article
      */
-    @GetMapping
+    @GetMapping(value = "/{id}")
     public ArticleDTO getArticleById(@PathVariable("id") Long id){
         return articleService.getArticleById(id);
     }
