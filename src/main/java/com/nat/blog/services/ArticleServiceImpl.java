@@ -63,6 +63,7 @@ public class ArticleServiceImpl implements ArticleService
         articleDTO.setTitle(article.getTitle());
         articleDTO.setContent(article.getContent());
         articleDTO.setSummary(article.getSummary());
+        articleDTO.setAuthorId((article.getAuthorId()));
         return articleDTO;
     }
 
@@ -74,6 +75,7 @@ public class ArticleServiceImpl implements ArticleService
         article.setTitle(articleDTO.getTitle());
         article.setContent(articleDTO.getContent());
         article.setSummary((articleDTO.getSummary()));
-        return null;
+        article.setAuthorId((articleDTO.getAuthorId()));
+        return article;
     }
 }

@@ -1,8 +1,5 @@
 package com.nat.blog.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,8 +13,6 @@ public class ArticleDTO {
     /**
      * Identifiant de l'article
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
@@ -34,5 +29,7 @@ public class ArticleDTO {
      * Resumé de l'article (max 50 mots)
      */
     private String summary;
+
+    private Long authorId;
 
 }

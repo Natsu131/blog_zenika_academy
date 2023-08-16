@@ -39,7 +39,7 @@ public class ArticleController {
      * @param articleDTO
      * @return l'article créer et l'affiche
      */
-    @PostMapping
+    @PostMapping(value = "/add-article")
     public ArticleDTO createArticle(@RequestBody ArticleDTO articleDTO){
         return articleService.saveArticle(articleDTO);
     }

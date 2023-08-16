@@ -40,6 +40,7 @@ public class Article {
      * Constructeur vide requis par Spring
      */
     public Article() {
+        super();
     }
 
     /**
